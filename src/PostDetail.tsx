@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { Comments } from "./Comments";
 import { createPostTitle, Post } from "./domain";
 import { Action } from "./postsReducer";
 
@@ -47,35 +47,4 @@ export const PostDetail = ({ post, dispatch }:
             <Comments postId={post.id} />
         </section>
     </div>
-}
-
-type Comment = Readonly<{
-    postId: number;
-    id: number;
-    name: string;
-    email: string;
-    body: string;
-}>;
-
-const Comments = ({ postId } : { postId: number}) => {
-    const [comments, setComments] = useState<Comment[]>([]);
-
-    useEffect(() => {
-        const fetchComments = async () => {
-            const response = await fetch(`https://jsonplaceholder.typicode.com/posts/${postId}/comments`);
-            const data = await response.json();
-
-            setComments(data as Comment[]);
-        }
-
-        fetchComments();
-    }, [postId]);
-
-    if(postId <= 0) return null;
-    return <ul>
-        {comments.map(comment => 
-            <li>
-                {comment.email} : {comment.body}
-            </li>)}
-    </ul>
 }

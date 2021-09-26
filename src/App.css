@@ -1,5 +1,5 @@
 .app {
-  padding-left: 8px;
+  padding: 0px 8px;
 }
 
 .post__title {
@@ -18,4 +18,9 @@
   font-size: 20px;
   margin-top: 16px;
   margin-bottom: 16px;
+}
+
+.posts__pagination {
+  display: flex;
+  justify-content: space-between;
 }
